@@ -37,6 +37,7 @@ namespace Onenote2md.Shared
             foreach (var spanNode in htmlDoc.DocumentNode.Descendants("span").ToList())
             {
                 var newTextNode = htmlDoc.CreateTextNode(ProcessSpanStyles(spanNode));
+                newTextNode.Attributes.Remove("lang");
                 spanNode.ParentNode.ReplaceChild(newTextNode, spanNode);
             }
 
