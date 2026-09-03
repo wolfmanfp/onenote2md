@@ -525,8 +525,7 @@ namespace Onenote2md.Core
                                 context.Writer.WritePageImage(fullPath, bytes);
 
                                 var imageFilename = context.GetPageImageFilename();
-                                var contentRelativePath = $"file://{imageFilename}";
-                                var image = $"![{imageFilename}]({contentRelativePath})";
+                                var image = $"![[{imageFilename}]]";
 
                                 content.Append(image);
                                 context.ImageDef.Reset();
@@ -553,11 +552,8 @@ namespace Onenote2md.Core
                             File.Copy(oldPathAndName, fullPath);
 
                             var altText = newName;
-                            var contentFullPath = $"file://{fullPath}";
-                            contentFullPath = contentFullPath.Replace(@"\", @"/");
-                            contentFullPath = HttpUtility.UrlPathEncode(contentFullPath);
 
-                            var insertedFile = $"[{altText}]({contentFullPath})";
+                            var insertedFile = $"[[{altText}]]";
 
                             content.Append(insertedFile);
                         }
